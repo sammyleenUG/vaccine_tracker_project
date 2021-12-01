@@ -16,6 +16,14 @@
         <servlet-name>Register_Admin</servlet-name>
         <servlet-class>org.health.administration.Register_Admin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Update_HC</servlet-name>
+        <servlet-class>org.health.health.Update_HC</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Delete_HC</servlet-name>
+        <servlet-class>org.health.health.Delete_HC</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Register_HC</servlet-name>
         <url-pattern>/register_hc</url-pattern>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>Register_Admin</servlet-name>
         <url-pattern>/register_admin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Update_HC</servlet-name>
+        <url-pattern>/update_hc</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Delete_HC</servlet-name>
+        <url-pattern>/delete_hc</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
