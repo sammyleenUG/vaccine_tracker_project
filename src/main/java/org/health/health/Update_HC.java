@@ -6,11 +6,6 @@ package org.health.health;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author HP
  */
-public class Register_HC extends HttpServlet {
+public class Update_HC extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,45 +28,19 @@ public class Register_HC extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String hc_name = request.getParameter("name"); //value from form
-        String hc_location = request.getParameter("location"); //value from form
-        String insert_query = "INSERT INTO health_centre(name,location) VALUES(?,?)";
-       
-        //attempting to import driver class
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-        }catch(ClassNotFoundException ex){
-             System.out.println(ex);
+        response.setContentType("text/html;charset=UTF-8");
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Update_HC</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Update_HC at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        
-        try {
-            //connecting to database
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vaccine_tracker","root","");  
-            
-            //executing query
-            PreparedStatement st = con.prepareStatement(insert_query);
-            
-            if(hc_name.length() != 0 && hc_location.length() != 0){
-                st.setString(1, hc_name);
-                st.setString(2, hc_location);
-                st.executeUpdate();
-                
-                request.setAttribute("success", "Successfully registered " + hc_name);
-                RequestDispatcher dispatcher  = request.getRequestDispatcher("health_centers.jsp");
-                dispatcher.forward(request,response);
-            }else{
-                request.setAttribute("error", "Required field(s) empty");
-                RequestDispatcher dispatcher  = request.getRequestDispatcher("register_hc.jsp");
-                dispatcher.forward(request,response);
-            }
-            
-            st.close();
-            con.close();  
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

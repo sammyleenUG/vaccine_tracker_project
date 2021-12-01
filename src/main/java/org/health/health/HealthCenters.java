@@ -8,10 +8,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.servlet.RequestDispatcher;
+import java.sql.Statement;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author HP
  */
-public class Register_HC extends HttpServlet {
+@WebServlet(name = "HealthCenters", urlPatterns = {"/HealthCenters"})
+public class HealthCenters extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,45 +36,66 @@ public class Register_HC extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String hc_name = request.getParameter("name"); //value from form
-        String hc_location = request.getParameter("location"); //value from form
-        String insert_query = "INSERT INTO health_centre(name,location) VALUES(?,?)";
-       
-        //attempting to import driver class
+        String retrieveQuery = "SELECT * FROM health_centre ORDER BY id DESC";
+        
+        PrintWriter out = response.getWriter();
+        
         try{
             Class.forName("com.mysql.jdbc.Driver");
         }catch(ClassNotFoundException ex){
              System.out.println(ex);
         }
         
+      
         try {
-            //connecting to database
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vaccine_tracker","root","");  
+            Statement st= con.createStatement();
             
-            //executing query
-            PreparedStatement st = con.prepareStatement(insert_query);
-            
-            if(hc_name.length() != 0 && hc_location.length() != 0){
-                st.setString(1, hc_name);
-                st.setString(2, hc_location);
-                st.executeUpdate();
-                
-                request.setAttribute("success", "Successfully registered " + hc_name);
-                RequestDispatcher dispatcher  = request.getRequestDispatcher("health_centers.jsp");
-                dispatcher.forward(request,response);
-            }else{
-                request.setAttribute("error", "Required field(s) empty");
-                RequestDispatcher dispatcher  = request.getRequestDispatcher("register_hc.jsp");
-                dispatcher.forward(request,response);
+            //health centers results
+            ResultSet r = st.executeQuery(retrieveQuery);
+            int x = 1;
+            while(r.next()){
+               out.println("<tr><td>"+x+"</td>");
+               out.println("<td>"+r.getString("name")+"</td>");
+               out.println("<td>"+r.getString("location")+"</td>");
+               out.println("<td>"+number_of_bookings(r.getInt("id"))+"</td>");
+               out.println("<td><a href='/vaccine_tracker_project/delete_hc?id="+r.getString("id")+"'>Drop</a></td></tr>");
+               x++;
             }
             
             st.close();
-            con.close();  
+            con.close();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-       
     }
+    
+    public int number_of_bookings(int hc_id){
+        int number  = 0;          
+        String query = "SELECT COUNT(id) AS total_bookings " +
+                   "FROM booking " +   
+                   "WHERE health_center_id = " + hc_id;
+        
+       
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vaccine_tracker","root","");  
+            Statement st= con.createStatement();
+            
+            //health centers results
+            ResultSet r = st.executeQuery(query);
+            while(r.next()){
+                number  = r.getInt("total_bookings");
+            }
+            
+            st.close();
+            con.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
+        return number;
+    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

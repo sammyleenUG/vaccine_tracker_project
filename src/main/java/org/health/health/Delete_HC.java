@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author HP
  */
-public class Register_HC extends HttpServlet {
+public class Delete_HC extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,10 +34,9 @@ public class Register_HC extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String hc_name = request.getParameter("name"); //value from form
-        String hc_location = request.getParameter("location"); //value from form
-        String insert_query = "INSERT INTO health_centre(name,location) VALUES(?,?)";
-       
+        String hc_id= request.getParameter("id"); //value from form
+        String delQuery = "DELETE FROM health_centre WHERE id =" + hc_id;
+        
         //attempting to import driver class
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -50,20 +49,11 @@ public class Register_HC extends HttpServlet {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vaccine_tracker","root","");  
             
             //executing query
-            PreparedStatement st = con.prepareStatement(insert_query);
+            PreparedStatement st = con.prepareStatement(delQuery);
             
-            if(hc_name.length() != 0 && hc_location.length() != 0){
-                st.setString(1, hc_name);
-                st.setString(2, hc_location);
+            if(hc_id.length() != 0){
                 st.executeUpdate();
-                
-                request.setAttribute("success", "Successfully registered " + hc_name);
-                RequestDispatcher dispatcher  = request.getRequestDispatcher("health_centers.jsp");
-                dispatcher.forward(request,response);
-            }else{
-                request.setAttribute("error", "Required field(s) empty");
-                RequestDispatcher dispatcher  = request.getRequestDispatcher("register_hc.jsp");
-                dispatcher.forward(request,response);
+                response.sendRedirect("health_centers.jsp");
             }
             
             st.close();
@@ -71,7 +61,6 @@ public class Register_HC extends HttpServlet {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
