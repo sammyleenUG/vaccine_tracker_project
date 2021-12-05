@@ -35,13 +35,13 @@ public class Health_Needs_Assessment extends SimpleTagSupport {
     @Override
     public void doTag() throws JspException, IOException {
         
-        String retrieveQuery = "SELECT hv.*,hc.name AS hc_name,vc.type AS vaccine_name"
+        String retrieveQuery = "SELECT DISTINCT hv.hc_id,hv.vc_id, hc.name AS hc_name,vc.type AS vaccine_name, hv.dozzes  AS dozzes"
                 + " FROM hc_vc AS hv "
                 + " LEFT JOIN " + table + " hc"
                 + " ON hv.hc_id = hc.id"
                 + " LEFT JOIN vaccine vc"
                 + " ON hv.vc_id = vc.id"
-                + " ORDER BY id DESC";
+                + " ORDER BY hv.id DESC";
        
         
         try{
@@ -110,8 +110,8 @@ public class Health_Needs_Assessment extends SimpleTagSupport {
         int number  = 0;          
         String query = "SELECT COUNT(id) AS total_bookings " +
                    "FROM booking " +   
-                   "WHERE health_center_id = " + hc_id + " " +
-                   "AND vaccine_id = " + vc_id;
+                   "WHERE health_center_id = " + hc_id;
+                  
         
        
         try {

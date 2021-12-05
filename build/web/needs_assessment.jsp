@@ -59,7 +59,7 @@
                     </div>
                     <div class="col-md-6">
                         <a style="margin-left:20%" type="button" class="btn btn-sm btn-secondary" href="register_health_center.jsp">New Health Center</a>
-                        <a type="button" class="btn btn-sm btn-secondary" href="health_centers.jsp">Health center list</a>
+                        <a type="button" class="btn btn-sm btn-secondary" href="health_center_list.jsp">Health center list</a>
                     </div>
                 </div>
                 
