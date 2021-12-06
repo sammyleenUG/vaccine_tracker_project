@@ -1,7 +1,7 @@
 <%-- 
-    Document   : distributeVaccine
-    Created on : Dec 5, 2021, 11:22:45 PM
-    Author     : USER
+    Document   : register_person
+    Created on : Dec 6, 2021, 8:28:38 AM
+    Author     : HP
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -21,27 +21,36 @@
     </head>
     <body>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="vaccines.jsp">&lAarr; Back</a>
+          <a class="navbar-brand" href="people.jsp">&lAarr; Back</a>
       </nav>
       <div class="container">
           <div class="row">
               <div class="col-md-6 mr-auto ml-auto">
-                    <center><h3>DISTRIBUTE VACCINE</h3></center>
-                    <form action="distributeVc.jsp" method="post">
-                        <label>Vaccine</label><br>
+                    <center><h3>NEW PATIENT</h3></center>
+                    <form action="regperson.jsp" method="post">
+                        <label>NIN</label><br>
+                        <input class="form-control" type="number" name="nin" required=""><br>
+                        <label>FULL NAME</label><br>
+                        <input class="form-control" type="text" name="name" required=""><br>
+                        <label>EMAIL</label><br>
+                        <input class="form-control" type="email" name="email" required=""><br>
+                        <label>VACCINE</label><br>
                         <select name="vc_id" class="form-control">
                             <vaccination:select table="vaccine" displayformat="list" />
                         </select><br>
-                        <label>Health Center</label><br>
+                        <label>HEALTH CENTER</label><br>
                         <select name="hc_id" class="form-control">
                             <vaccination:select table="health_centre" displayformat="list" />
-                        </select><br>
-                        <label>Dozzes</label><br>
-                        <input class="form-control" type="number" name="dozzes" required=""><br>
+                        </select><br
+                        <label>BATCH NO</label><br>
+                        <input class="form-control" type="number" name="batch" required=""><br>
+                        <label>TARGET DATE</label><br>
+                        <input class="form-control" type="date" name="tdate" required=""><br>
                         <input type="submit" class="btn btn-sm btn-secondary" value="Save">
                     </form>
               </div>
           <//div>
-      </div>     
+      </div>
+      <hr>
     </body>
 </html>

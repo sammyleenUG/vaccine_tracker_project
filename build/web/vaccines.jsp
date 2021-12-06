@@ -16,7 +16,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
         <script src="https://use.fontawesome.com/a042e00ef5.js"></script>
-        <title>Health Centers</title>
+        <title>vaccines</title>
     </head>
     <body>
          <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -36,10 +36,10 @@
                         <a class="nav-link" href="vaccines.jsp">Vaccines</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Bookings</a>
+                        <a class="nav-link" href="booking.jsp">Bookings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">People</a>
+                        <a class="nav-link" href="people.jsp">People</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">Logout</a>

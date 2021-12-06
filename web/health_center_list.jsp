@@ -33,13 +33,13 @@
                         <a class="nav-link" href="health_center_list.jsp">Health Centers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Vaccines</a>
+                        <a class="nav-link" href="vaccines.jsp">Vaccines</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Bookings</a>
+                        <a class="nav-link" href="booking.jsp">Bookings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">People</a>
+                        <a class="nav-link" href="people.jsp">People</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">Logout</a>

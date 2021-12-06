@@ -17,7 +17,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
         <script src="https://use.fontawesome.com/a042e00ef5.js"></script>
-        <title>Register Health Center</title>
+        <title>Distribute</title>
     </head>
     <body>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -32,7 +32,7 @@
                         <select name="vc_id" class="form-control">
                             <vaccination:select table="vaccine" displayformat="list" />
                         </select><br>
-                        <label>Hospital</label><br>
+                        <label>Health Center</label><br>
                         <select name="hc_id" class="form-control">
                             <vaccination:select table="health_centre" displayformat="list" />
                         </select><br>

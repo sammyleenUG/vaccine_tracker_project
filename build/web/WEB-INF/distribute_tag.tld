@@ -23,7 +23,7 @@
     
   <tag>
     <name>insert</name>
-    <tag-class>org.health.vaccine.DistributeVaccine</tag-class>
+    <tag-class>org.health.vaccine.UpdateVaccine</tag-class>
     <body-content>scriptless</body-content>
     <attribute>
       <name>table</name>

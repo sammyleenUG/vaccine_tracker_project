@@ -1,11 +1,11 @@
 <%-- 
-    Document   : vaccines
-    Created on : Dec 5, 2021, 10:44:23 PM
-    Author     : USER
+    Document   : people
+    Created on : Dec 6, 2021, 8:12:04 AM
+    Author     : HP
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="WEB-INF/vaccine_tag.tld" prefix="vaccination" %>
+<%@taglib uri="WEB-INF/people_tag.tld" prefix="vaccination" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +16,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
         <script src="https://use.fontawesome.com/a042e00ef5.js"></script>
-        <title>vaccines</title>
+        <title>people</title>
     </head>
     <body>
          <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -36,7 +36,7 @@
                         <a class="nav-link" href="vaccines.jsp">Vaccines</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="booking.jsp">Bookings</a>
+                        <a class="nav-link" href="">Bookings</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="people.jsp">People</a>
@@ -55,16 +55,15 @@
                 </center>
                 <div class="row" style="margin-top: 40px">
                     <div class="col-md-6">
-                        <h3>VACCINES</h3>
+                        <h3>PEOPLE</h3>
                     </div>
                     <div class="col-md-6">
-                        <a style="margin-left:20%" type="button" class="btn btn-sm btn-secondary" href="registerVaccine.jsp">New Vaccine</a>
-                        <a type="button" class="btn btn-sm btn-secondary" href="distributeVaccine.jsp">Distribute</a>
+                        <a style="margin-left:20%" type="button" class="btn btn-sm btn-secondary" href="register_person.jsp">Register Patient</a>
                     </div>
                 </div>
                 
                 <p></p>
-                <vaccination:select table="vaccine" displayformat="table"/>
+                <vaccination:select table="people" displayformat="table"/>
                 
               </div>
             </div>

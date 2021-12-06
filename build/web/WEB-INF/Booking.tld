@@ -2,7 +2,7 @@
 <taglib version="2.1" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd">
   <tlib-version>1.0</tlib-version>
   <short-name>vaccination</short-name>
-  <uri>/WEB-INF/distribute_tag</uri>
+  <uri>http://org.com</uri>
   <!-- A validator verifies that the tags are used correctly at JSP
           translation time. Validator entries look like this: 
        <validator>
@@ -20,11 +20,10 @@
           <listener-class>com.mycompany.TagLibListener</listener-class> 
       </listener>
     -->
-    
   <tag>
     <name>insert</name>
-    <tag-class>org.health.vaccine.UpdateVaccine</tag-class>
-    <body-content>scriptless</body-content>
+    <tag-class>org.health.booking.BookingTagHandler</tag-class>
+    <body-content>empty</body-content>
     <attribute>
       <name>table</name>
       <required>true</required>
@@ -32,17 +31,8 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <name>where</name>
-      <rtexprvalue>true</rtexprvalue>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
       <name>values</name>
-      <rtexprvalue>true</rtexprvalue>
-      <type>java.lang.String</type>
-    </attribute>
-     <attribute>
-      <name>dozzes</name>
+      <required>true</required>
       <rtexprvalue>true</rtexprvalue>
       <type>java.lang.String</type>
     </attribute>
